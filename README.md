@@ -5,6 +5,10 @@
 [![codecov](https://codecov.io/gh/JFL110/xtend-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/JFL110/xtend-extensions)
 [![npm](https://img.shields.io/npm/v/repileux)](https://www.npmjs.com/package/repileux)
 
+:warning: **This package is currently in development.**
+
+
+
 Building on [Redux](https://github.com/reduxjs/redux) and [react-router](https://github.com/ReactTraining/react-router) to make building modular, single page applications easy.
 
 - Declare 'pages' with path, component and onLoad/onFirstLoad triggers.
