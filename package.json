@@ -1,7 +1,7 @@
 {
   "name": "repileux",
-  "version": "1.0.4",
-  "description": "Yet another app builder using Redux and React.",
+  "version": "1.0.5",
+  "description": "Yet another app builder using Redux and react-router.",
   "private": false,
   "scripts": {
     "test": "NODE_DEBUG=logger jest",
@@ -12,6 +12,15 @@
     "pubDistDry": "rm -rf dist/* && npm run test && npm run start:git && cp ./package.json dist  && cp ./README.md dist && cd dist && npm publish --dry-run"
   },
   "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JFL110/repileux"
+  },
+  "keywords": [
+    "Redux",
+    "React",
+    "react-router"
+  ],
   "jest": {
     "setupFiles": [
       "./js/main/__test__/jest-setup.js"
@@ -23,7 +32,6 @@
       "!**/vendor/**"
     ]
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {

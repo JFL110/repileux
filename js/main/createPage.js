@@ -12,6 +12,7 @@ export default ({
     onFirstLoad = null,
     lazyWrap = false,
     is404 = false,
+    meta = {},
     additions = {},
 }) => {
 
@@ -30,6 +31,7 @@ export default ({
         onFirstLoad: onFirstLoad,
         lazyWrap: lazyWrap,
         is404: is404,
+        meta: meta,
         additions: additions ?? {}
     }
 }
