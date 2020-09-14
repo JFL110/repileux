@@ -11,9 +11,9 @@ test('', () => {
         reducers: {}
     });
 
-    const TestComponent = connectWithSlice(testSlice, ({ value }) => {
+    connectWithSlice(testSlice, ({ value }) => {
         return <div>{value}</div>
     });
 
-    const app = createApp({});
+    createApp({});
 })
