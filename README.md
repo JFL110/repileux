@@ -13,7 +13,7 @@ Building on [Redux](https://github.com/reduxjs/redux) and [react-router](https:/
 
 - Declare 'pages' with path, component and onLoad/onFirstLoad triggers.
 - Declare 'modules' with pages, a relative path, redux reducers/slices, middleware
-- Combine modules into an application which sets up Redux, react-router and renders.
+- Combine modules into an application which sets up Redux react-router and React.
 - Declare network-based state which is exposed conveniently to components with progress indication and errors. Also includes options to configure local storage.
 
 
