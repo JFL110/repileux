@@ -46,6 +46,7 @@ export default ({
     rootPageElementId = null,
     rootPageElement = null,
     lazyPageFallback = null,
+    renderFunction = null,
 }) => {
 
     // Array correct
@@ -58,7 +59,8 @@ export default ({
     if (fourOFourPage && fourOFourPageComponent) throw "Cannot specify both fourOFourPage and fourOFourPageComponent";
     if (!default404Page && (fourOFourPage || fourOFourPageComponent)) throw "Cannot specify noDefault404Page with either fourOFourPage or fourOFourPageComponent";
     if (_pageWrappers && _pageWrappers.some(p => !isFunction(p))) throw "pageWrappers must be functions";
-
+    if (renderFunction && (rootPageElementId || rootPageElement)) throw "Cannot specify both renderFunction and either rootPageElementId or rootPageElement";
+    
     // 404 Page
     const root404Page = default404Page && (fourOFourPage || createPage({
         id: default404PageId,
@@ -123,7 +125,7 @@ export default ({
         throw `Cannot find root page element to render to with id '${rootPageElementId || defaultRootPageElementId}'`;
     }
 
-    render(
+    (renderFunction ?? render)(
         <Provider
             store={getStore()}>
             <ConnectedRouter
