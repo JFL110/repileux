@@ -1,6 +1,6 @@
 {
   "name": "repileux",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Yet another app builder using Redux and react-router.",
   "private": false,
   "scripts": {
