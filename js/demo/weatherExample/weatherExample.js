@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { createModule, createPage, connectToOpState, createEndpoint, createNetOpState, dispatchPush } from '../../main/index'
 
 import './weather.scss'
