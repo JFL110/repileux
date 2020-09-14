@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/JFL110/xtend-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/JFL110/xtend-extensions)
 [![npm](https://img.shields.io/npm/v/repileux)](https://www.npmjs.com/package/repileux)
 
-:warning: **This package is currently in development.**
+:warning: **This package is currently in development.** :warning: 
 
 
 
