@@ -20,5 +20,11 @@ jobs:
     - run: npm install
     - run: npx eslint ./js/
     - run: npm run test
+    - name: Codecov
+      uses: codecov/codecov-action@v1.0.5
+      with:
+        # Repository upload token - get it from codecov.io
+        token:  ${{ secrets.CODECOV_TOKEN }}
+        # Specify whether or not CI build should fail if Codecov runs into an error during upload
+        fail_ci_if_error: false
 
-           
