@@ -46,6 +46,7 @@ module.exports = env => {
   ];
 
   const isDemo = process.argv.some(arg => arg == '--demo');
+  const isMinify =  process.argv.some(arg => arg == '--minify');
 
   // NPM Package setup
   if (!isDemo) return ({
@@ -55,6 +56,9 @@ module.exports = env => {
     output :{
       filename : "index.js",
       libraryTarget: 'umd',
+    },
+    optimization : {
+      minimize : isMinify
     },
     plugins: [
       ...sharedPlugins
@@ -81,6 +85,7 @@ module.exports = env => {
       chunkFilename: './static/[hash:8].[name].bundle.js',
       publicPath: "/"
     },
+   
     watchOptions: {
       aggregateTimeout: 200,
       poll: 1000

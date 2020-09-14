@@ -121,12 +121,9 @@ export default ({
 
     // React
 
-    var renderToElement;
-    if (!renderFunction) {
-        renderToElement = rootPageElement || document.getElementById(rootPageElementId || defaultRootPageElementId);
-        if (!renderToElement) {
-            throw `Cannot find root page element to render to with id '${rootPageElementId || defaultRootPageElementId}'`;
-        }
+    const renderToElement = rootPageElement || document.getElementById(rootPageElementId || defaultRootPageElementId);
+    if (!renderToElement && !renderFunction) {
+        throw `Cannot find root page element to render to with id '${rootPageElementId || defaultRootPageElementId}'`;
     }
 
     (renderFunction ?? render)(
