@@ -1,7 +1,7 @@
 {
   "name": "repileux",
-  "version": "1.0.3",
-  "description": " - in development - ",
+  "version": "1.0.4",
+  "description": "Yet another app builder using Redux and React.",
   "private": false,
   "scripts": {
     "test": "NODE_DEBUG=logger jest",
