@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 //
-const homePageHtml = "demo.html";
+const homePageHtml = "home.html";
 
 // Plugin to execute any code after compilation
 const ArbitraryCodeAfterReload = function (cb) {
