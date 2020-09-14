@@ -39,6 +39,8 @@ export default modules => ({ getState, dispatch }) => next => action => {
             getState: getState
         };
 
+        next(action);
+
         if (!getState()[appSlice.name].pagesVisited[matchPage.page.id]) {
             // On first load
             matchPage.page.onFirstLoad?.(args);
@@ -47,9 +49,9 @@ export default modules => ({ getState, dispatch }) => next => action => {
 
         // On load
         matchPage.page.onLoad?.(args);
+
+        return;
     }
-
-
 
     next(action);
 };
