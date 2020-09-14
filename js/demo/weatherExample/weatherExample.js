@@ -10,8 +10,8 @@ const locations = {
     'Edinburgh': '3333229',
     'Cardiff': '2653822',
     'Made Up Place': 'x',
-
 }
+
 const appid = '77bb08ccdf5b125a7a6645f7a5e74062'
 
 // Web state - current weather
@@ -57,6 +57,7 @@ const WeatherPage = connectToOpState([weatherState],
             </div>
             <div className="json-window">weatherState:{JSON.stringify(weather, null, 2)}</div>
         </React.Fragment>)
+
 
 // Page & Module
 export default createModule({
