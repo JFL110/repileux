@@ -60,7 +60,7 @@ export default ({
     if (!default404Page && (fourOFourPage || fourOFourPageComponent)) throw "Cannot specify noDefault404Page with either fourOFourPage or fourOFourPageComponent";
     if (_pageWrappers && _pageWrappers.some(p => !isFunction(p))) throw "pageWrappers must be functions";
     if (renderFunction && (rootPageElementId || rootPageElement)) throw "Cannot specify both renderFunction and either rootPageElementId or rootPageElement";
-    
+
     // 404 Page
     const root404Page = default404Page && (fourOFourPage || createPage({
         id: default404PageId,
@@ -120,9 +120,13 @@ export default ({
     getStore().dispatch(appSlice.actions.onPreFirstRender());
 
     // React
-    const renderToElement = rootPageElement || document.getElementById(rootPageElementId || defaultRootPageElementId);
-    if (!renderToElement) {
-        throw `Cannot find root page element to render to with id '${rootPageElementId || defaultRootPageElementId}'`;
+
+    var renderToElement;
+    if (!renderFunction) {
+        renderToElement = rootPageElement || document.getElementById(rootPageElementId || defaultRootPageElementId);
+        if (!renderToElement) {
+            throw `Cannot find root page element to render to with id '${rootPageElementId || defaultRootPageElementId}'`;
+        }
     }
 
     (renderFunction ?? render)(

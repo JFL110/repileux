@@ -15,5 +15,5 @@ test('', () => {
         return <div>{value}</div>
     });
 
-    createApp({});
+    createApp({renderFunction : log});
 })
