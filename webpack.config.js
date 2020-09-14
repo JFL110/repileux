@@ -46,19 +46,19 @@ module.exports = env => {
   ];
 
   const isDemo = process.argv.some(arg => arg == '--demo');
-  const isMinify =  process.argv.some(arg => arg == '--minify');
+  const isMinify = process.argv.some(arg => arg == '--minify');
 
   // NPM Package setup
   if (!isDemo) return ({
     entry: {
       lib: "./js/main/index.js",
     },
-    output :{
-      filename : "index.js",
+    output: {
+      filename: "index.js",
       libraryTarget: 'umd',
     },
-    optimization : {
-      minimize : isMinify
+    optimization: {
+      minimize: isMinify
     },
     plugins: [
       ...sharedPlugins
@@ -67,6 +67,10 @@ module.exports = env => {
       rules: [
         ...sharedRules
       ]
+    },
+    externals: {
+      'react': 'react', // Case matters here 
+      'react-dom' : 'reactDOM' // Case matters here 
     },
     resolve: {
       extensions: ['.js', '.es6']
@@ -85,7 +89,7 @@ module.exports = env => {
       chunkFilename: './static/[hash:8].[name].bundle.js',
       publicPath: "/"
     },
-   
+
     watchOptions: {
       aggregateTimeout: 200,
       poll: 1000
