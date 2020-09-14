@@ -1,0 +1,1 @@
+export default itemOrList => Array.isArray(itemOrList) ? itemOrList : [itemOrList];
