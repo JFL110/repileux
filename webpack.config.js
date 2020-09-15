@@ -56,6 +56,8 @@ module.exports = env => {
     output: {
       filename: "index.js",
       libraryTarget: 'umd',
+      library: 'repileux',
+      umdNamedDefine: true,
     },
     optimization: {
       minimize: isMinify
@@ -69,8 +71,8 @@ module.exports = env => {
       ]
     },
     externals: {
-      'react': 'react', // Case matters here 
-      'react-dom' : 'react-dom' // Case matters here 
+      'react': 'react',
+      'react-dom': 'react-dom'
     },
     resolve: {
       extensions: ['.js', '.es6']

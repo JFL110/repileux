@@ -1,5 +1,5 @@
 
-/**
+/*!
  * Return true if the supplied argument is a function, otherwise false
  */
 export default functionToCheck => {

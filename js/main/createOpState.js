@@ -51,7 +51,7 @@ const rootMapError = err => {
     return isPlainObject(err) ? err : JSON.stringify(err);
 }
 
-/**
+/*!
  * OpState is state that is derived from an expensive operation, for example a web request. 
  */
 export default ({

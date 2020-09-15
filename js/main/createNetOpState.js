@@ -6,10 +6,13 @@ const typeErrorMapper = err => {
     return err instanceof TypeError ? String(err) : err;
 }
 
-/**
+
+/*!
  * OpState that is derrived from a web request
+ * 
+ * @param name Name of the state,
  */
-export default ({
+const createNetOpState = ({
     name,
     endpoint = null,
     // Only one item of this state will be stored
@@ -40,7 +43,14 @@ export default ({
     //
     requestBodyTransformations = [],
     responseBodyTransformations = [],
-    nullRequestBody = false
+    nullRequestBody = false,
+    // Retry
+    isIdempotent = false,
+    maxRetryCount = null,
+    // Function to determine if a retry should be attempted. Takes {attemptNumber, error, args}. Used in conjunction with maxRetryCount if specified
+    shouldRetry = null,
+    // Either fixed value or function to determine number of ms to wait before retry, taking {attemptNumber, error, args}
+    retryDelayMs = null,
 }) => {
 
     // Validate
@@ -76,7 +86,7 @@ export default ({
 
             const respTransformed = {
                 ...resp,
-                body : bodyTransformed
+                body: bodyTransformed
             }
 
             if (bodyOnly) {
@@ -105,5 +115,11 @@ export default ({
         logPersistenceVersionChanges: logPersistenceVersionChanges,
         calculator: calculator,
         errorMappers: fullErrorMappers,
+        isIdempotent: isIdempotent,
+        maxRetryCount: maxRetryCount,
+        shouldRetry: shouldRetry,
+        retryDelayMs: retryDelayMs,
     });
 }
+
+export default createNetOpState;
