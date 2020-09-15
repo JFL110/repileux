@@ -1,6 +1,6 @@
 {
   "name": "repileux",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Yet another app builder using Redux and react-router.",
   "private": false,
   "scripts": {
@@ -31,7 +31,10 @@
       "./js/main/**/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/vendor/**"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss|less)$": "<rootDir>/js/main/__mocks__/styleMock.js"
+    }
   },
   "author": "",
   "license": "ISC",
