@@ -104,6 +104,18 @@ export default ({
         });
     });
 
+
+    // Digest paths
+    const allPaths = {
+        // Pages
+        pages: allModules.flatMap(m => m.pages.flatMap(page => page.paths.map(path => ({ path: m.combinedPath(path), page: page })))),
+
+        // 404 Pages
+        fourOFourPages: allModules.sort((m1, m2) => (m1.urlPrefix?.length ?? 0) - (m2.urlPrefix?.length ?? 0))
+                               .flatMap(m => m.fourOFourPages.flatMap(page => page.paths.map(path => ({ path: m.combinedPath(path), page: page }))))
+    };
+
+
     // Configure redux
     setStore(configureStore({
         reducer: combineReducers(combinedReducers),
@@ -111,7 +123,7 @@ export default ({
             ...(logReduxActions ? [loggingMiddleware] : []),
             routerMiddleware(history),
             ...allModules.flatMap(m => m.middleware),
-            pageChangeMiddleware(allModules),
+            pageChangeMiddleware(allPaths),
             ...getDefaultMiddleware()
         ],
     }));
@@ -134,7 +146,7 @@ export default ({
                 <AppContainer
                     lazyPageFallback={lazyPageFallback ?? defaultLazyPageFallback}
                     pageWrappers={_pageWrappers}
-                    modules={allModules} />
+                    allPaths={allPaths} />
             </ConnectedRouter>
         </Provider>,
         renderToElement

@@ -441,10 +441,10 @@ export default ({
         const didExpire = (!singletonKey && !keyByArguments) ? false : _checkExpiration(key);
         if (didExpire) return calculate(args, 0, 0);
 
-        // Empty value
+        // Has value already
         const currentValue = _get()[key];
         const wasSuccess = currentValue?.status == OpStatusCode.SUCCESS;
-        if (wasSuccess) return new Promise(() => mapSingleStored(currentValue));
+        if (wasSuccess) return Promise.resolve(currentValue.value);
 
         // Calculate
         return calculate(args, 0, 0);

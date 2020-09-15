@@ -18,8 +18,10 @@ export default ({
     // Array correct
     const _pages = itemOrList(pages);
 
-    const combinedPath = page => {
-        const pagePathNonNull = (page.path ?? "");
+    const combinedPath = path => {
+        if (typeof path !== "string") throw `Path must be a string but got ${path}`;
+
+        const pagePathNonNull = (path ?? "");
         if (!urlPrefix) {
             return ensureLeadingSlash(pagePathNonNull);
         }

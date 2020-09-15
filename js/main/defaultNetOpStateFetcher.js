@@ -11,17 +11,14 @@ export default ({
     if (!endpoint.uri) throw "endpoint.uri is required";
 
     var fetchBody = body;
-    requestBodyTransformations.forEach(t => {fetchBody = t(fetchBody);});
+    requestBodyTransformations.forEach(t => { fetchBody = t(fetchBody); });
 
     const opts = {
         method: endpoint.method,
         mode: endpoint.mode ? valueOrCallWithArg(endpoint.mode, body) : undefined,
         body: fetchBody == null ? null : JSON.stringify(fetchBody),
-        headers: {
-        }
+        headers: endpoint.headers ? valueOrCallWithArg(endpoint.headers, body) : {}
     }
-
-    console.log(opts);
 
     const uri = valueOrCallWithArg(endpoint.uri, body);
 

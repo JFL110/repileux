@@ -5,20 +5,19 @@ import valurOrCall from './valueOrCall'
 const noIdKeyPrefix = "__noIdKey";
 
 export default ({
-    modules,
+    allPaths,
     pageWrappers,
     lazyPageFallback }) => {
 
     var noIdKey = 0;
 
-    const pageToRoute = (p, m) => {
-
+    const pageToRoute = ({ path, page }, as404) => {
         // Validate
-        if (!p.path && !p.is404) throw `Invalid page for ${p} null path`
-        if (!p.component) throw `Invalid page for ${p} null component`
-        return <Route exact={!p.is404} path={p.is404 ? undefined : m.combinedPath(p)} key={p.id ?? (noIdKeyPrefix + noIdKey++)}>
-            {p.meta && <DocumentMeta {...valurOrCall(p.meta)} extend />}
-            {wrapPage(pageToComponent(p), p.additions)}
+        if (!path && !page.is404) throw `Invalid page for ${page} null path`
+        if (!page.component) throw `Invalid page for ${page} null component`
+        return <Route exact={!as404} path={path} key={page.id ?? (noIdKeyPrefix + noIdKey++)}>
+            {page.meta && <DocumentMeta {...valurOrCall(page.meta)} extend />}
+            {wrapPage(pageToComponent(page), page.additions)}
         </Route>
     }
 
@@ -42,16 +41,11 @@ export default ({
     return <Switch>
         {
             // Pages -> Routes
-            modules.flatMap(m => {
-                return m.pages.map(p => pageToRoute(p, m));
-            })
+            allPaths.pages.map(pathAndPage => pageToRoute(pathAndPage, false))
         }
         {
             // 404 Pages -> Routes
-            modules.sort((m1, m2) => (m1.urlPrefix?.length ?? 0) - (m2.urlPrefix?.length ?? 0))
-                .flatMap(m => {
-                    return m.fourOFourPages.map(p => pageToRoute(p, m));
-                })
+            allPaths.fourOFourPages.map(pathAndPage => pageToRoute(pathAndPage, true))
         }
     </Switch>
 };

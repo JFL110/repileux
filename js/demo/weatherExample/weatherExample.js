@@ -79,7 +79,7 @@ export default createModule({
     name: "simpleWebStateModule",
     pages: createPage({
         name: 'weather-page',
-        path: '/',
+        paths: '/',
         component: <WeatherPage />,
         additions: {
             title: "Weather"
